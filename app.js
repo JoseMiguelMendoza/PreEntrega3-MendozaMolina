@@ -7,11 +7,11 @@ function seguros(){
         switch (tipo){
             case 1:
                 let opcion = prompt("En este campo, le haremos preguntas sobre cuanto valor tienen sus pertenencias, si esta inseguro de esto, asesorese en manos de expertos en el tema.\n¿Desea volver? (YES/NO)")
-                if(opcion == 'YES'){
+                if(opcion == 'YES' || opcion == 'yes'){
                     seguros()
                 }
                 else{
-                    if(opcion == 'NO'){
+                    if(opcion == 'NO' || opcion == 'no'){
                         nombr = prompt("Ingrese su nombre: ")
                         console.log("El nombre de la persona que quiere un seguro de hogar es"+" "+nombr) 
                         alert("Le indicaremos a continuación los pasos a realizar.\n1 - Hacer un inventario de las cosas de la casa. (Mobiliario, electrodomesticos y dispositivos, enseres y artículos decorativos, joyas y objetos de valor).")
@@ -58,8 +58,8 @@ function seguros(){
                             alert("Le enviamos un mail con los siguientes pasos a realizar, verifique si lo ha recibido y notifiquenos. ¡Que tenga buen día!")
                         }
                         else{
-                            if(varios_asegurados == 'SI'){
-                                while(varios_asegurados != 'NO'){
+                            if(varios_asegurados == 'SI' || varios_asegurados == 'si'){
+                                while(varios_asegurados != 'NO' || varios_asegurados != 'no'){
                                     console.log(primer_nombre_asegurado+" "+"decidió agregar a alguien más.")
                                     let nombre_asegurado = prompt("Ingrese el nombre del asegurado: ")
                                     console.log("El nombre del siguiente asegurado es"+" "+nombre_asegurado)
