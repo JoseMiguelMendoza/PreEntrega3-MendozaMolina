@@ -1,4 +1,32 @@
-alert("¡Bienvenido a tu lugar de seguros!\nTe haremos unas preguntas para determinar que tipos de seguros abarcamos y algunos otros datos más.")
+
+function ingreso_nuevo_usuario(){
+    const lista_usuarios =[]
+
+    function Usuario(nombre, apellido, edad, email, pais_origen){
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+        this.email = email;
+        this.pais_origen = pais_origen;
+    }
+
+    let bienvenida = prompt("¡Bienvenido a tu lugar de seguros!\nTe haremos unas preguntas para determinar que tipos de seguros abarcamos y algunos otros datos más. ¿Te interesa? SI/NO")
+    if (bienvenida == 'SI' || bienvenida == 'si'){
+        let nombre = prompt("Ingrese su nombre: ")
+        let apellido = prompt("Ingrese su apellido: ")
+        let edad = parseInt(prompt("Ingrese su edad actual: "))
+        let e_mail = prompt("Ingrese su dirección de correo electrónico: ")
+        let pais = prompt("Ingrese su país de origen: ")
+
+        const usuario_ingresado = new Usuario(nombre, apellido, edad, e_mail, pais)
+        lista_usuarios.push(usuario_ingresado)
+        console.log(lista_usuarios)
+    } 
+    else{
+        alert("De acuerdo, que tenga buen día.")
+    }
+}
+
 function seguros(){
     let tipo
     do{
@@ -12,6 +40,7 @@ function seguros(){
                 }
                 else{
                     if(opcion == 'NO' || opcion == 'no'){
+                        // Quiero que NOMBR NO EXISTA MAS, ya que escribimos nuestro nombre al inicio del simulador.
                         nombr = prompt("Ingrese su nombre: ")
                         console.log("El nombre de la persona que quiere un seguro de hogar es"+" "+nombr) 
                         alert("Le indicaremos a continuación los pasos a realizar.\n1 - Hacer un inventario de las cosas de la casa. (Mobiliario, electrodomesticos y dispositivos, enseres y artículos decorativos, joyas y objetos de valor).")
@@ -19,6 +48,7 @@ function seguros(){
                         valor_pertenencias = parseFloat(valor_pertenencias)
                         console.log("El valor total de sus pertenencias es de"+" "+valor_pertenencias)
                         alert("3 - Valore sus joyas y objetos de valor especial, es recomendable hacer esto ya que varias aseguradoras valoras estos objetos de forma diferente a precios distintos. Todo objeto de valor o joya debe superar los 2000 euros.")
+                        // Quiero que CORREO NO EXISTA MAS, ya que escribimos nuestro correo al inicio del simulador.
                         correo = prompt("Ingrese su mail para enviarle los datos y pasos a continuación: ")
                         console.log("Su correo es:"+" "+correo)
                         alert("¡Correo enviado! Gracias por elegirnos.")
@@ -32,17 +62,19 @@ function seguros(){
                 let capital = prompt("1 - Ingrese la capital a recibir: ")
                 capital = parseFloat(capital)
                 console.log("La capital a recibir es de"+" "+capital)
-                nacimiento = prompt("2 - Ingrese su fecha de nacimiento (DD/MM/AA): ")
+                //Quiero que "nombre" tampoco exista aca, ya que escribimos el nombre al inicio del simulador.
                 nombre = prompt("3 - Ingrese su nombre completo, por favor: ")
                 console.log("La persona que quiere adquirir el seguro de vida se llama"+" "+nombre)
+                // Lo mismo acá con mail.
                 mail = prompt("4 - Ya calculamos su seguro de vida, por favor ingrese su mail a continuación para enviarle los calculos ya realizados: ")
                 console.log("Su mail es:"+" "+mail)
                 alert("¡Gracias!\nQue tenga buen día, adios.")
                 break
             case 3:
                 let poliza = prompt("¿Ya tiene una poliza de salud? (SI/NO): ")
-                if(poliza == 'SI' || poliza == 'NO'){
+                if(poliza == 'SI' || poliza == 'si' || poliza == 'NO' || poliza == 'no'){
                     console.log("Esta persona"+" "+poliza+" "+"tiene una poliza de salud.")
+                    // Aqui no es necesario.
                     let primer_nombre_asegurado = prompt("Ingrese su nombre: ")
                     console.log("El nombre del primer asegurado es"+" "+primer_nombre_asegurado)
                     let primer_asegurado = prompt("Por favor, ingrese su fecha de nacimiento sin espaciados ni guiones (DD/MM/AA): ")
@@ -59,7 +91,7 @@ function seguros(){
                         }
                         else{
                             if(varios_asegurados == 'SI' || varios_asegurados == 'si'){
-                                while(varios_asegurados != 'NO' || varios_asegurados != 'no'){
+                                while(varios_asegurados != 'NO'){
                                     console.log(primer_nombre_asegurado+" "+"decidió agregar a alguien más.")
                                     let nombre_asegurado = prompt("Ingrese el nombre del asegurado: ")
                                     console.log("El nombre del siguiente asegurado es"+" "+nombre_asegurado)
@@ -96,7 +128,10 @@ function seguros(){
     }while (tipo != 4)
 }
 
+ingreso_nuevo_usuario();
 seguros();
+
+
 
 
 
