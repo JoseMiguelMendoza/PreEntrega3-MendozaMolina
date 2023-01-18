@@ -1,6 +1,5 @@
+const lista_usuarios =[]
 function ingreso_usuario(){
-    const lista_usuarios =[]
-
     function Usuario(nombre, apellido, edad, email, pais_origen){
         this.nombre = nombre;
         this.apellido = apellido;
@@ -18,9 +17,7 @@ function ingreso_usuario(){
         let pais = prompt("Ingrese su país de origen: ")
 
         let usuario_ingresado = new Usuario(nombre, apellido, edad, e_mail, pais)
-        lista_usuarios.push(usuario_ingresado)
-        console.log(lista_usuarios)
-        return lista_usuarios;
+        return usuario_ingresado;
     } 
     else{
         if (bienvenida == 'NO' || bienvenida == 'no'){
@@ -35,20 +32,23 @@ function ingreso_usuario(){
 }
 
 let ingreso = ingreso_usuario()
+lista_usuarios.push(ingreso)
+console.log(lista_usuarios)
 
 function chequeoMail(lista_usuario){
-    let y
-    let indice = 0
     let mail_asegurado = prompt("Ingrese su mail nuevamente: ")
-    for(y = 0; y < lista_usuario.length; y++){
-        if (lista_usuario[y].email.includes(mail_asegurado) == true ){
-            indice = lista_usuario[y].email.indexOf(mail_asegurado)
-            return indice
-        }
-        else{
-            alert("Este mail no se encuentra registrado.")
-            seguros(lista_usuario)
-        }
+    const encontrado = lista_usuario.find((usuario) =>
+    usuario.email === mail_asegurado
+    )
+    if (encontrado != undefined){
+        console.log("El elemento mail fue encontrado en el siguiente objeto: "+encontrado)
+        let indice = lista_usuario.indexOf(encontrado)
+        console.log("El indice del usuario en mi array es: "+indice)
+        return indice
+    }
+    else{
+        alert("No se encuentra registrado el mail. Reintente de nuevo.")
+        chequeoMail(lista_usuario)
     }
 }
 
@@ -56,7 +56,7 @@ function seguros(lista_usuario){
     const IVA = 1.21
     let tipo
     do{
-        tipo = prompt("¿Qué tipo de seguro está buscando?\n1 - Seguro de Hogar\n2 - Seguro de Vida\n3 - Seguro médico\n4 - Salir")
+        tipo = prompt("¿Qué tipo de seguro está buscando?\n1 - Seguro de Hogar\n2 - Seguro de Vida\n3 - Seguro médico\n4 - Salir\n5 - Cambiar de usuario.")
         tipo = parseInt(tipo)
         switch (tipo){
             case 1:
@@ -163,13 +163,18 @@ function seguros(lista_usuario){
             case 4: 
                 alert("¡Hasta la próxima!")
                 break
+            case 5: 
+                let ingresoNuevoUsuario = ingreso_usuario();
+                lista_usuario.push(ingresoNuevoUsuario)
+                console.log(lista_usuario)
+                break
             default:
                 alert("Opción no valida.")
         }
     }while (tipo != 4)
 }
 
-seguros(ingreso);
+seguros(lista_usuarios);
 
 
 
