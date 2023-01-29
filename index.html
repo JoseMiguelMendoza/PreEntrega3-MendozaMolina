@@ -4,9 +4,177 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Simulador de seguros</title>
 </head>
-<body>
-    <script src="./js/app.js"></script>
+    <nav class="navbar navbar-expand-lg navColor bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./index.html">Sim. Seguros</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Sobre Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="#">Objetivos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>  
+
+    <div id="carouselExampleCaptions" class="carousel slide bg-transparent">
+        <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="./images/seg_vida1170x686.jpg" class="d-block w-100" alt="Imagen de seguro de vida">
+            <div class="carousel-caption d-none d-md-block">
+            <h5>Seguros de vida</h5>
+            <p>Cuenta con nosotros con todo lo relacionado a tu inversión personal.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="./images/servicio_medico.jpg" class="d-block w-100" alt="Imagen de seguro medico">
+            <div class="carousel-caption d-none d-md-block">
+            <h5>Seguros médicos</h5>
+            <p>Asociate con nosotros y descubre que obra social se ajusta a tus condiciones.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="./images/seguro-de-hogar-1000x667.webp" class="d-block w-100" alt="Imagen de seguro de hogar">
+            <div class="carousel-caption d-none d-md-block">
+            <h5>Seguros de hogar</h5>
+            <p>¿Cansado de hacer cuentas? No hay problema, nosotros los resolvemos por ti. Contrata nuestros servicios ahora.</p>
+            </div>
+        </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+    <div class="container mt-3" id="contenedorFormulario">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" 
+            id="exampleFormControlInput1" class="form-label">Nombre: </label>
+            <input type="text" class="form-control"  placeholder="Ingresar nombre">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput2" 
+            id="exampleFormControlInput2" class="form-label">Apellido: </label>
+            <input type="text" class="form-control"  placeholder="Ingresar apellido">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput3" id="exampleFormControlInput3" class="form-label">Edad actual: </label>
+            <input type="text" class="form-control"  placeholder="Ingresar edad">
+        </div>
+
+        <div class="imgCentered">
+            <img class="imgBackground align-self-center" src="./images/img.back.jpg" alt="Imagen de fondo">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput4" id="exampleFormControlInput4" class="form-label">Correo electrónico: </label>
+            <input type="email" class="form-control"  placeholder="correo-electronico@gmail.com">
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput5" id="exampleFormControlInput5" class="form-label">País de origen:  </label>
+            <input type="text" class="form-control"  placeholder="Ingresar país">
+        </div>
+
+        <div class="mb-4">
+            <label for="exampleDataList" class="form-label">Tipos de seguros: </label>
+            <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Click para ver opciones">
+            <datalist id="datalistOptions">
+            </datalist>
+        </div>
+        
+
+        <div id="segurosHogar" class="mt-3 visually-hidden">
+            <p>Le indicaremos a continuación los pasos a realizar.\n1 - Hacer un inventario de las cosas de la casa. (Mobiliario, electrodomesticos y dispositivos, enseres y artículos decorativos, joyas y objetos de valor).</p>
+            <p>1 - Calcular el valor de todas sus pertenencias ya antes mencionadas en el paso 1. ¿De cuanto estamos hablando? Por favor, ingrese la suma total, sin tener en cuenta las joyas y objetos de valor especial.</p>
+            <div class="mb-3">
+                <label for="exampleFormControlInput6" id="exampleFormControlInput6" class="form-label">Calculo total de pertenencias: </label>
+                <input type="text" class="form-control"  placeholder="Ingresar monto">
+            </div>
+            <p>2 - Valore sus joyas y objetos de valor especial, es recomendable hacer esto ya que varias aseguradoras valoras estos objetos de forma diferente a precios distintos. Todo objeto de valor o joya debe superar los 2000 euros.
+            Entonces, ¿Cuanto sería el total teniendo en cuenta las joyas, y objetos de valor especial?
+            </p>
+            <div class="mb-3">
+                <label for="exampleFormControlInput7" id="exampleFormControlInput7" class="form-label">Calculo total de joyas y objetos especiales: </label>
+                <input type="text" class="form-control"  placeholder="Ingresar monto">
+            </div>
+            <button type="button" class="btn btn-primary col-md-12 botonColor" id="btnHogar" data-bs-toggle="modal" data-bs-target="#exampleModal">Continue</button>
+        </div>
+
+        <div id="segurosVida" class="visually-hidden">
+            <div class="mb-3">
+                <label for="exampleFormControlInput8" id="exampleFormControlInput8" class="form-label">Ingrese la capital a recibir: </label>
+                <input type="text" class="form-control"  placeholder="Ingresar cantidad">
+            </div>
+            <button type="button" class="btn btn-primary col-md-12 botonColor" id="btnVida" data-bs-toggle="modal" data-bs-target="#exampleModal">Continue</button>
+        </div>
+
+        <div id="segurosMedicos" class="mt-3 visually-hidden">
+            <div class="mb-3">
+                <label for="exampleFormControlInput7" id="exampleFormControlInput7" class="form-label">Ingrese su fecha de nacimiento: </label>
+                <input type="text" class="form-control"  placeholder="Ingresar fecha de nacimiento">
+            </div>
+            <button type="button" class="btn btn-primary col-md-12 botonColor" id="btnMedico" data-bs-toggle="modal" data-bs-target="#exampleModal">Continue</button>
+        </div>
+
+        
+        <!-- Modal -->
+        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Aqui lo modificare con js</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    ...
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-primary">Listo</button>
+                    </div>
+                </div>
+            </div>
+        </div>  -->
+    </div>
+
+
+    <footer class="foot">  
+        <p>¡Gracias por solicitar nuestro servicio!</p>
+        <p>En caso de requerirnos de nuevo o recomendarnos, le dejaremos a continuación nuestros enlaces de redes sociales.</p>
+        <a href="#"><img class="icons" src="./images/email.png" alt="Gmail icon"></a>
+        <a href="#"><img class="icons" src="./images/facebook.png" alt="Facebook icon"></a> 
+        <a href="#"><img class="icons" src="./images/instagram.png" alt="Instagram icon"></a>
+        <a href="#"><img class="icons" src="./images/whatsapp.png" alt="WhatsApp icon"></a>
+        <p>Esperamos volverte a ver pronto, ¡Muchas gracias!</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="./js/appausar.js"></script>
+    <!-- <script src="./js/app.js"></script> -->
 </body>
 </html>
