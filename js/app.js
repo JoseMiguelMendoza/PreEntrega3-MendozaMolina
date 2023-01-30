@@ -34,6 +34,8 @@ let btnContinueHogar = document.querySelector('#btnContinueHogar')
 let inputPertenencias = document.querySelector('#inputPertenencias')
 let inputJoyas = document.querySelector('#inputJoyas')
 let textSeguroHogar = document.querySelector('#textSeguroHogar')
+let btnSaveChangesHogar = document.querySelector('#btnSaveChangesHogar')
+
 
 // DOM seguro medico
 let segurosMedicos = document.querySelector('#segurosMedicos')
@@ -54,9 +56,14 @@ btnAvanzar.addEventListener("click", infoCompletada)
 btnContinueVida.addEventListener("click", vidaModal)
 btnContinueHogar.addEventListener("click",hogarModal)
 btnContinueMedico.addEventListener("click",medicoModal)
+btnSaveChangesHogar.addEventListener("click",guardarCambios)
 
 
 //functions
+function guardarCambios(){
+    // Quiero hacer que el modal de atras desaparesca, guarde los datos en LocalStorage, y resetee mis inputs con la informacion a principio de pagina.
+    alert("Se han guardado y enviado los datos satisfactoriamente.")
+}
 
 function medicoModal(){
     if(inputAnioNacimiento.value != '' && inputDni.value != '' && inputDireccion.value != ''){
@@ -130,6 +137,7 @@ function vidaModal(){
 function infoCompletada(){
 
     if(inputNombre.value != ''  && inputApellido.value != '' && inputEdad.value != '' && inputCorreo.value != '' && inputPais.value != '' && inputTiposDeSeguros.value != null){
+        // La parte de guardado del usuario, quiero que sea una vez seleccionado el servicio y que se hayan "guardado los cambios".
         let usuarioIngresado = new Usuario(inputNombre.value, inputApellido.value, inputEdad.value, inputCorreo.value, inputPais.value)
         USUARIOS.push(usuarioIngresado)
         console.log(USUARIOS)
