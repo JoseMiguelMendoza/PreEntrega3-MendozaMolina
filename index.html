@@ -74,17 +74,17 @@
         <div class="mb-3">
             <label for="exampleFormControlInput1" 
             id="exampleFormControlInput1" class="form-label">Nombre: </label>
-            <input type="text" class="form-control"  placeholder="Ingresar nombre">
+            <input type="text" id="inputNombre" class="form-control"  placeholder="Ingresar nombre">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput2" 
             id="exampleFormControlInput2" class="form-label">Apellido: </label>
-            <input type="text" class="form-control"  placeholder="Ingresar apellido">
+            <input type="text" id="inputApellido" class="form-control"  placeholder="Ingresar apellido">
         </div>
 
         <div class="mb-3">
             <label for="exampleFormControlInput3" id="exampleFormControlInput3" class="form-label">Edad actual: </label>
-            <input type="text" class="form-control"  placeholder="Ingresar edad">
+            <input type="text" id="inputEdad" class="form-control"  placeholder="Ingresar edad">
         </div>
 
         <div class="imgCentered">
@@ -93,12 +93,12 @@
 
         <div class="mb-3">
             <label for="exampleFormControlInput4" id="exampleFormControlInput4" class="form-label">Correo electrónico: </label>
-            <input type="email" class="form-control"  placeholder="correo-electronico@gmail.com">
+            <input type="email" id="inputCorreo" class="form-control"  placeholder="correo-electronico@gmail.com">
         </div>
 
         <div class="mb-3">
             <label for="exampleFormControlInput5" id="exampleFormControlInput5" class="form-label">País de origen:  </label>
-            <input type="text" class="form-control"  placeholder="Ingresar país">
+            <input type="text" id="inputPais" class="form-control"  placeholder="Ingresar país">
         </div>
 
         <div class="mb-4">
@@ -107,59 +107,135 @@
             <datalist id="datalistOptions">
             </datalist>
         </div>
-        
+        <div class="btnCentered">
+            <button type="button" id="btnAvanzar" class="btn btn-primary botonColor">Avanzar</button>
+        </div>
+
+<!-- Seguro de Hogar -->
 
         <div id="segurosHogar" class="mt-3 visually-hidden">
-            <p>Le indicaremos a continuación los pasos a realizar.\n1 - Hacer un inventario de las cosas de la casa. (Mobiliario, electrodomesticos y dispositivos, enseres y artículos decorativos, joyas y objetos de valor).</p>
-            <p>1 - Calcular el valor de todas sus pertenencias ya antes mencionadas en el paso 1. ¿De cuanto estamos hablando? Por favor, ingrese la suma total, sin tener en cuenta las joyas y objetos de valor especial.</p>
+            <p>Le indicaremos a continuación los pasos a realizar. Primero, hacer un inventario de las cosas de la casa. (Mobiliario, electrodomesticos y dispositivos, enseres y artículos decorativos, joyas y objetos de valor).</p>
+            <p>1 - Calcular el valor de todas sus pertenencias ya antes mencionadas anteriormente. ¿De cuanto estamos hablando? Por favor, ingrese la suma total, sin tener en cuenta las joyas y objetos de valor especial.</p>
             <div class="mb-3">
                 <label for="exampleFormControlInput6" id="exampleFormControlInput6" class="form-label">Calculo total de pertenencias: </label>
-                <input type="text" class="form-control"  placeholder="Ingresar monto">
+                <input type="text" id="inputPertenencias" class="form-control"  placeholder="Ingresar monto">
             </div>
-            <p>2 - Valore sus joyas y objetos de valor especial, es recomendable hacer esto ya que varias aseguradoras valoras estos objetos de forma diferente a precios distintos. Todo objeto de valor o joya debe superar los 2000 euros.
+            <p>2 - Luego, valore sus joyas y objetos de valor especial, es recomendable hacer esto ya que varias aseguradoras valoras estos objetos de forma diferente a precios distintos. Todo objeto de valor o joya debe superar los 2000 euros.
             Entonces, ¿Cuanto sería el total teniendo en cuenta las joyas, y objetos de valor especial?
             </p>
             <div class="mb-3">
                 <label for="exampleFormControlInput7" id="exampleFormControlInput7" class="form-label">Calculo total de joyas y objetos especiales: </label>
-                <input type="text" class="form-control"  placeholder="Ingresar monto">
+                <input type="text" id="inputJoyas" class="form-control"  placeholder="Ingresar monto">
             </div>
-            <button type="button" class="btn btn-primary col-md-12 botonColor" id="btnHogar" data-bs-toggle="modal" data-bs-target="#exampleModal">Continue</button>
+            <!-- Button trigger modal -->
+            <div class="btnCentered">
+                <button type="button" id="btnContinueHogar" class="btn btn-primary botonColor" data-bs-toggle="modal" data-bs-target="#exampleModalHogar">
+                    Continue
+                </button>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalHogar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Seguros de Hogar - Confirmación</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p id="textSeguroHogar"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary botonColor">Guardar cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+<!-- Seguro de vida -->
 
         <div id="segurosVida" class="visually-hidden">
             <div class="mb-3">
                 <label for="exampleFormControlInput8" id="exampleFormControlInput8" class="form-label">Ingrese la capital a recibir: </label>
-                <input type="text" class="form-control"  placeholder="Ingresar cantidad">
+                <input type="text" id="inputCapital" class="form-control"  placeholder="Ingresar cantidad">
             </div>
-            <button type="button" class="btn btn-primary col-md-12 botonColor" id="btnVida" data-bs-toggle="modal" data-bs-target="#exampleModal">Continue</button>
-        </div>
-
-        <div id="segurosMedicos" class="mt-3 visually-hidden">
             <div class="mb-3">
-                <label for="exampleFormControlInput7" id="exampleFormControlInput7" class="form-label">Ingrese su fecha de nacimiento: </label>
-                <input type="text" class="form-control"  placeholder="Ingresar fecha de nacimiento">
+                <label for="exampleFormControlInput12" id="exampleFormControlInput12" class="form-label">Ingrese año de nacimiento: </label>
+                <input type="text" id="inputAnio" class="form-control"  placeholder="Ingresar año">
             </div>
-            <button type="button" class="btn btn-primary col-md-12 botonColor" id="btnMedico" data-bs-toggle="modal" data-bs-target="#exampleModal">Continue</button>
-        </div>
-
-        
-        <!-- Modal -->
-        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Aqui lo modificare con js</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                    ...
-                    </div>
-                    <div class="modal-footer text-center">
-                        <button type="button" class="btn btn-primary">Listo</button>
+            <!-- Button trigger modal -->
+            <div class="btnCentered">
+                <button type="button" id="btnContinueVida" class="btn btn-primary botonColor" data-bs-toggle="modal" data-bs-target="#exampleModalVida">
+                    Continue
+                </button>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalVida" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Seguros de vida - Confirmación</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p id="textSeguroVida"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary botonColor">Guardar cambios</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>  -->
+        </div>
+
+<!-- Seguro Médico -->
+
+        <div id="segurosMedicos" class="mt-3 visually-hidden">
+            <div class="mb-3">
+                <label for="exampleFormControlInput9" id="exampleFormControlInput9" class="form-label">Ingrese el año en que nació: </label>
+                <input type="text" id="inputAnioNacimiento" class="form-control"  placeholder="Ingresar año de nacimiento">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput10" id="exampleFormControlInput10" class="form-label">Obra Social: </label>
+                <input type="text" id="inputObraSocial" class="form-control"  placeholder="Ingresar Obra Social">
+                <small>(*) Si carece de Obra Social, simplemente puede dejarlo sin contenido.</small>
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput11" id="exampleFormControlInput11" class="form-label">Area en el que reside actualmente: </label>
+                <input type="text" id="inputDireccion" class="form-control"  placeholder="Ingresar dirección y localidad">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput13" id="exampleFormControlInput13" class="form-label">DNI: </label>
+                <input type="text" id="inputDni" class="form-control"  placeholder="Ingresar DNI">
+                <small>(*) Ingrese su DNI sin puntos, ni guiones.</small>
+            </div>
+            <!-- Button trigger modal -->
+            <div>
+                <button type="button" id="btnContinueMedico" class="btn btn-primary botonColor" data-bs-toggle="modal" data-bs-target="#exampleModalMedico">
+                    Continue
+                </button>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModalMedico" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Seguros Médicos - Confirmación</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p id="textSeguroMedico"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary botonColor">Guardar cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -175,6 +251,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="./js/appausar.js"></script>
-    <!-- <script src="./js/app.js"></script> -->
 </body>
 </html>

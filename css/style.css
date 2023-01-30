@@ -5,6 +5,10 @@
     list-style-type: none;
 }
 
+.listStyle{
+    list-style-type: disc;
+}
+
 .botonColor{
     background-color:rgb(227, 241, 252)!important;
     color:black;
@@ -32,6 +36,11 @@
     margin-top: 20px;
 }
 
+.btnCentered{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
 
 .imgCentered{
     display: flex;

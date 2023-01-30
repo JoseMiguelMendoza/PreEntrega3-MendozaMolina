@@ -3,7 +3,6 @@ const USUARIOS = []
 const SERVICIOS = ["SEGURO DE VIDA","SEGURO DE HOGAR","SEGURO MÉDICO"]
 
 // CONSTRUCTOR
-
     function Usuario(nombre, apellido, edad, email, pais_origen){
         this.nombre = nombre;
         this.apellido = apellido;
@@ -12,68 +11,167 @@ const SERVICIOS = ["SEGURO DE VIDA","SEGURO DE HOGAR","SEGURO MÉDICO"]
         this.pais_origen = pais_origen;
     }
 
-
-
-// DOM
-
-let inputNombre = document.querySelector('#exampleFormControlInput1')
-let inputApellido = document.querySelector('#exampleFormControlInput2')
-let inputEdad = document.querySelector('#exampleFormControlInput3')
-let inputCorreo = document.querySelector('#exampleFormControlInput4')
-let inputPais = document.querySelector('#exampleFormControlInput5')
-
-
-
+// DOM formulario principal
+let inputNombre = document.querySelector('#inputNombre')
+let inputApellido = document.querySelector('#inputApellido')
+let inputEdad = document.querySelector('#inputEdad')
+let inputCorreo = document.querySelector('#inputCorreo')
+let inputPais = document.querySelector('#inputPais')
+let btnAvanzar = document.querySelector('#btnAvanzar')
 let inputSelectorOptions = document.querySelector('#datalistOptions')
 let inputTiposDeSeguros = document.querySelector('#exampleDataList')
-let btnContinue = document.querySelector('#btnContinue')
 
+// DOM seguro de vida
 let segurosVida = document.querySelector('#segurosVida')
-let segurosHogar = document.querySelector('#segurosHogar')
-let segurosMedicos = document.querySelector('#segurosMedicos')
+let btnContinueVida = document.querySelector('#btnContinueVida')
+let inputCapital = document.querySelector('#inputCapital')
+let inputAnio = document.querySelector('#inputAnio')
+let textSeguroVida = document.querySelector('#textSeguroVida')
 
+// DOM seguro de hogar
+let segurosHogar = document.querySelector('#segurosHogar')
+let btnContinueHogar = document.querySelector('#btnContinueHogar')
+let inputPertenencias = document.querySelector('#inputPertenencias')
+let inputJoyas = document.querySelector('#inputJoyas')
+let textSeguroHogar = document.querySelector('#textSeguroHogar')
+
+// DOM seguro medico
+let segurosMedicos = document.querySelector('#segurosMedicos')
+let btnContinueMedico = document.querySelector('#btnContinueMedico')
+let inputAnioNacimiento = document.querySelector('#inputAnioNacimiento')
+let inputObraSocial = document.querySelector('#inputObraSocial')
+let inputDireccion = document.querySelector('#inputDireccion')
+let inputDni = document.querySelector('#inputDni')
+let textSeguroMedico = document.querySelector('#textSeguroMedico')
 
 // EVENTS
-
 inputTiposDeSeguros.addEventListener("click", SERVICIOS.forEach((servicio) => {
     inputSelectorOptions.innerHTML += `<option value="${servicio}">`
-    return inputSelectorOptions.innerHTML;
 }))
 
-// Este event, no funciona. Probar otra cosa.
-inputSelectorOptions.addEventListener("Selection",eleccionServicio)
+btnAvanzar.addEventListener("click", infoCompletada)
 
-// CONDICIONALS
+btnContinueVida.addEventListener("click", vidaModal)
+btnContinueHogar.addEventListener("click",hogarModal)
+btnContinueMedico.addEventListener("click",medicoModal)
 
 
+//functions
 
-function eleccionServicio(){
-    if (inputTiposDeSeguros != null && inputSelectorOptions == "SEGURO DE VIDA"){
-        segurosVida.classList.remove("visually-hidden")
-        segurosHogar.remove()
-        segurosMedicos.remove()
-    }
-    else{
-        if (inputTiposDeSeguros != null && inputSelectorOptions == "SEGURO MÉDICO"){
-            segurosMedicos.classList.remove("visually-hidden")
-            segurosHogar.remove()
-            segurosVida.remove()
+function medicoModal(){
+    if(inputAnioNacimiento.value != '' && inputDni.value != '' && inputDireccion.value != ''){
+        if (inputObraSocial.value == ''){
+            inputObraSocial.value = "No dispone"
         }
-        else{
-            if (inputTiposDeSeguros != null && inputSelectorOptions == "SEGURO DE HOGAR"){
-                segurosHogar.classList.remove("visually-hidden")
-                segurosMedicos.remove()
-                segurosVida.remove()
-            }
-        }
+        textSeguroMedico.innerHTML = 
+        `<p>Los datos a confirmar son los siguientes: </p>
+        <ul>
+            <li class="listStyle">Nombre: ${inputNombre.value}</li>
+            <li class="listStyle">Apellido: ${inputApellido.value}</li>
+            <li class="listStyle">Edad: ${inputEdad.value}</li>
+            <li class="listStyle">Correo eléctronico: ${inputCorreo.value}</li>
+            <li class="listStyle">Pais: ${inputPais.value}</li>
+            <li class="listStyle">DNI: ${inputDni.value}</li>
+        </ul>
+        <p> Su obra social es de: ${inputObraSocial.value}</p>
+        `        
+        textSeguroMedico.innerHTML += '<p>¿Todos los datos son correctos?</p>' 
     }
 }
 
-inputNombre.addEventListener("change",(e) =>{
-    e.preventDefault()
-    inputNombre != null ? alert("Hay algo aqui") : alert("No hay nada")
-})
-// inputNombre != null ? alert("Hay algo aqui") : alert("No hay nada")
+function hogarModal(){
+    if(inputPertenencias != '' && inputJoyas != ''){
+        const IVA = 1.21
+        let pertenencias = parseInt(inputPertenencias.value)
+        let joyas = parseInt(inputJoyas.value)
+        let totalSeguroHogar = parseInt(((pertenencias + joyas) * IVA) / 0.9)
+        textSeguroHogar.innerHTML = 
+        `<p>Los datos a confirmar son los siguientes: </p>
+        <ul>
+            <li class="listStyle">Nombre: ${inputNombre.value}</li>
+            <li class="listStyle">Apellido: ${inputApellido.value}</li>
+            <li class="listStyle">Edad: ${inputEdad.value}</li>
+            <li class="listStyle">Correo eléctronico: ${inputCorreo.value}</li>
+            <li class="listStyle">Pais: ${inputPais.value}</li>
+        </ul>
+        <p> El total sobre su seguro de hogar sería de $${totalSeguroHogar}</p>
+        `        
+        textSeguroHogar.innerHTML += '<p>¿Todos los datos son correctos?</p>'       
+    }
+    else{
+        alert("Complete todos los datos.")
+    }
+}
+
+function vidaModal(){
+    if(inputCapital.value != '' && inputAnio.value != ''){      
+        let capital = parseInt(inputCapital.value)
+        let edad = parseInt(inputEdad.value)
+        let anio = parseInt(inputAnio.value)
+        let totalSeguroVida = parseInt(((capital * edad) + anio) / 10) 
+        textSeguroVida.innerHTML = 
+        `<p>Los datos a confirmar son los siguientes: </p>
+        <ul>
+            <li class="listStyle">Nombre: ${inputNombre.value}</li>
+            <li class="listStyle">Apellido: ${inputApellido.value}</li>
+            <li class="listStyle">Edad: ${inputEdad.value}</li>
+            <li class="listStyle">Correo eléctronico: ${inputCorreo.value}</li>
+            <li class="listStyle">Pais: ${inputPais.value}</li>
+        </ul>
+        <p> El total sobre su seguro de vida sería de $${totalSeguroVida}</p>
+        `        
+        textSeguroVida.innerHTML += '<p>¿Todos los datos son correctos?</p>'
+    }
+    else{
+        alert("Complete todo los datos.")
+    }
+}
+
+function infoCompletada(){
+
+    if(inputNombre.value != ''  && inputApellido.value != '' && inputEdad.value != '' && inputCorreo.value != '' && inputPais.value != '' && inputTiposDeSeguros.value != null){
+        let usuarioIngresado = new Usuario(inputNombre.value, inputApellido.value, inputEdad.value, inputCorreo.value, inputPais.value)
+        USUARIOS.push(usuarioIngresado)
+        console.log(USUARIOS)
+        switch(inputTiposDeSeguros.value){
+            case "SEGURO DE VIDA":
+                segurosVida.classList.remove("visually-hidden")
+                if (segurosMedicos.classList.contains("visually-hidden") == false){
+                    segurosMedicos.classList.add("visually-hidden")
+                }else{
+                    if(segurosHogar.classList.contains("visually-hidden") == false){
+                        segurosHogar.classList.add("visually-hidden")
+                    }
+                }
+                break
+            case "SEGURO MÉDICO":
+                segurosMedicos.classList.remove("visually-hidden")
+                if (segurosVida.classList.contains("visually-hidden") == false){
+                    segurosVida.classList.add("visually-hidden")
+                }else{
+                    if(segurosHogar.classList.contains("visually-hidden") == false){
+                        segurosHogar.classList.add("visually-hidden")
+                    }
+                }
+                break
+            case "SEGURO DE HOGAR":
+                segurosHogar.classList.remove("visually-hidden")
+                if (segurosMedicos.classList.contains("visually-hidden") == false){
+                    segurosMedicos.classList.add("visually-hidden")
+                }else{
+                    if(segurosVida.classList.contains("visually-hidden") == false){
+                        segurosVida.classList.add("visually-hidden")
+                    }
+                }
+                break
+            default:
+                alert("No ha elegido un tipo de servicio")
+        }
+    }
+    else{
+        alert("Por favor, rellene todos los campos")
+    }
+}
 
 
 
@@ -81,30 +179,3 @@ inputNombre.addEventListener("change",(e) =>{
 
 
 
-
-
-
-
-/**************************************************/
-/**********************ERRORES*********************/
-/**************************************************/
-
-// ESTE IF NO FUNCIONA.
-// if (inputTiposDeSeguros.inputSelectorOptions == 'SEGURO DE VIDA'){
-//     const ingresoUsuario = new Usuario(inputNombre, inputApellido, inputEdad, inputCorreo, inputPais)
-//     USUARIOS.push(ingresoUsuario)
-//     console.log(USUARIOS)
-    /* Aqui probablemente usemos LocalStorage para guardar los usuarios. */
-    // Estoy creando todos los INPUTS desde HTML, y desde js los eliminaré, a sus clases y demas.
-// }
-
-// functions
-
-// function ModalSeguroVida(/*Aqui va la lista de usuario, para poder usar sus datos en OTRO modal, para confirmación de datos.*/){
-//     titleModal.innerText = 'SEGURO DE VIDA - formulario'
-//     titleModal.append()
-// }
-
-// Mi funcion NO FUNCIONA, EL IF TAMPOCO. Lo demas si. No olvidar que carge elementos del html al DOM que no use todavia.
-
-// Cambio de planes, ahora solo creare inputs, con sus nombres, y una vez llenado toda la información, aparecerá un modal con todos los datos para confirmar, y asi enviar los resultados.
