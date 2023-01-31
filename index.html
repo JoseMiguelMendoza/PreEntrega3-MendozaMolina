@@ -79,7 +79,7 @@
         <div class="mb-3">
             <label for="exampleFormControlInput2" 
             id="exampleFormControlInput2" class="form-label">Apellido: </label>
-            <input type="text" id="inputApellido" class="form-control"  placeholder="Ingresar apellido">
+            <input type="text" id="inputApellido" class="clearInputOnceInfoSent form-control"  placeholder="Ingresar apellido">
         </div>
 
         <div class="mb-3">
@@ -146,7 +146,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" id="btnSaveChangesHogar" class="btn btn-primary botonColor">Guardar cambios</button>
+                            <button type="button" id="btnSaveChangesHogar" class="btn btn-primary botonColor" data-bs-dismiss="modal">Guardar cambios</button>
                         </div>
                     </div>
                 </div>
@@ -183,7 +183,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary botonColor">Guardar cambios</button>
+                            <button type="button" class="btn btn-primary botonColor" data-bs-dismiss="modal" id="btnSaveChangesVida">Guardar cambios</button>
                         </div>
                     </div>
                 </div>
@@ -212,7 +212,7 @@
                 <small>(*) Ingrese su DNI sin puntos, ni guiones.</small>
             </div>
             <!-- Btn Modal -->
-            <div>
+            <div class="btnCentered">
                 <button type="button" id="btnContinueMedico" class="btn btn-primary botonColor" data-bs-toggle="modal" data-bs-target="#exampleModalMedico">
                     Continue
                 </button>
@@ -230,7 +230,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary botonColor">Guardar cambios</button>
+                            <button type="button" class="btn btn-primary botonColor" id="btnSaveChangesMedicos" data-bs-dismiss="modal">Guardar cambios</button>
                         </div>
                     </div>
                 </div>

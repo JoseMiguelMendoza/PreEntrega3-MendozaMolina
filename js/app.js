@@ -11,7 +11,7 @@ const SERVICIOS = ["SEGURO DE VIDA","SEGURO DE HOGAR","SEGURO MÉDICO"]
         this.pais_origen = pais_origen;
     }
 
-// DOM formulario principal
+// DOM - DATOS PRINCIPALES
 let inputNombre = document.querySelector('#inputNombre')
 let inputApellido = document.querySelector('#inputApellido')
 let inputEdad = document.querySelector('#inputEdad')
@@ -21,14 +21,16 @@ let btnAvanzar = document.querySelector('#btnAvanzar')
 let inputSelectorOptions = document.querySelector('#datalistOptions')
 let inputTiposDeSeguros = document.querySelector('#exampleDataList')
 
-// DOM seguro de vida
+
+// DOM - SEGURO DE VIDA
 let segurosVida = document.querySelector('#segurosVida')
 let btnContinueVida = document.querySelector('#btnContinueVida')
 let inputCapital = document.querySelector('#inputCapital')
 let inputAnio = document.querySelector('#inputAnio')
 let textSeguroVida = document.querySelector('#textSeguroVida')
+let btnSaveChangesVida = document.querySelector('#btnSaveChangesVida')
 
-// DOM seguro de hogar
+// DOM - SEGURO DE HOGAR
 let segurosHogar = document.querySelector('#segurosHogar')
 let btnContinueHogar = document.querySelector('#btnContinueHogar')
 let inputPertenencias = document.querySelector('#inputPertenencias')
@@ -37,7 +39,7 @@ let textSeguroHogar = document.querySelector('#textSeguroHogar')
 let btnSaveChangesHogar = document.querySelector('#btnSaveChangesHogar')
 
 
-// DOM seguro medico
+// DOM - SEGURO MÉDICO
 let segurosMedicos = document.querySelector('#segurosMedicos')
 let btnContinueMedico = document.querySelector('#btnContinueMedico')
 let inputAnioNacimiento = document.querySelector('#inputAnioNacimiento')
@@ -45,6 +47,7 @@ let inputObraSocial = document.querySelector('#inputObraSocial')
 let inputDireccion = document.querySelector('#inputDireccion')
 let inputDni = document.querySelector('#inputDni')
 let textSeguroMedico = document.querySelector('#textSeguroMedico')
+let btnSaveChangesMedicos = document.querySelector('#btnSaveChangesMedicos')
 
 // EVENTS
 inputTiposDeSeguros.addEventListener("click", SERVICIOS.forEach((servicio) => {
@@ -54,14 +57,59 @@ inputTiposDeSeguros.addEventListener("click", SERVICIOS.forEach((servicio) => {
 btnAvanzar.addEventListener("click", infoCompletada)
 
 btnContinueVida.addEventListener("click", vidaModal)
+btnSaveChangesVida.addEventListener("click", guardarCambiosVida)
+
 btnContinueHogar.addEventListener("click",hogarModal)
+btnSaveChangesHogar.addEventListener("click",guardarCambiosHogar)
+
 btnContinueMedico.addEventListener("click",medicoModal)
-btnSaveChangesHogar.addEventListener("click",guardarCambios)
+btnSaveChangesMedicos.addEventListener("click", guardarCambiosMedicos)
 
 
-//functions
-function guardarCambios(){
-    // Quiero hacer que el modal de atras desaparesca, guarde los datos en LocalStorage, y resetee mis inputs con la informacion a principio de pagina.
+
+// FUNCTIONS
+function guardarCambiosHogar(){
+    const IVA = 1.21
+    let pertenencias = parseInt(inputPertenencias.value)
+    let joyas = parseInt(inputJoyas.value)
+    let totalSeguroHogar = parseInt(((pertenencias + joyas) * IVA) / 0.9)
+    let servicioElegido = "Seguro de Hogar"
+    let servicio = {servicio: servicioElegido, cantidad_joyas: joyas, cantidad_pertenencias: pertenencias, total: totalSeguroHogar}
+    USUARIOS.push(servicio)
+    console.log(USUARIOS)
+    const usuarioAGuardar = JSON.stringify(USUARIOS)
+    localStorage.setItem("usuario/servicio",usuarioAGuardar)
+    alert("Se han guardado y enviado los datos satisfactoriamente.")
+}
+
+function guardarCambiosVida(){
+    let cantidadCapital = inputCapital.value
+    let datoAnio = inputAnio.value
+    let servicioElegido = "Seguro de vida"
+    let capital = parseInt(inputCapital.value)
+    let edad = parseInt(inputEdad.value)
+    let anio = parseInt(inputAnio.value)
+    let totalSeguroVida = parseInt(((capital * edad) + anio) / 10) 
+    let servicio = {servicio: servicioElegido, capital: cantidadCapital, año: datoAnio, total: totalSeguroVida}
+    USUARIOS.push(servicio)
+    console.log(USUARIOS)
+    const usuarioAGuardar = JSON.stringify(USUARIOS)
+    localStorage.setItem("usuario/servicio",usuarioAGuardar)
+
+    alert("Se han guardado y enviado los datos satisfactoriamente.")
+
+}
+
+function guardarCambiosMedicos(){
+    let obraSocial = inputObraSocial.value
+    let dni = inputDni.value
+    let direccion = inputDireccion.value
+    let servicioElegido = "Seguro Médico"
+    let servicio = {servicio: servicioElegido, obraSocial: obraSocial, DNI: dni, Direccion: direccion}
+    USUARIOS.push(servicio)
+    console.log(USUARIOS)
+    const usuarioAGuardar = JSON.stringify(USUARIOS)
+    localStorage.setItem("usuario/servicio",usuarioAGuardar)
     alert("Se han guardado y enviado los datos satisfactoriamente.")
 }
 
@@ -77,6 +125,7 @@ function medicoModal(){
             <li class="listStyle">Apellido: ${inputApellido.value}</li>
             <li class="listStyle">Edad: ${inputEdad.value}</li>
             <li class="listStyle">Correo eléctronico: ${inputCorreo.value}</li>
+            <li class="listStyle">Dirección: ${inputDireccion.value}</li>
             <li class="listStyle">Pais: ${inputPais.value}</li>
             <li class="listStyle">DNI: ${inputDni.value}</li>
         </ul>
@@ -128,6 +177,7 @@ function vidaModal(){
         <p> El total sobre su seguro de vida sería de $${totalSeguroVida}</p>
         `        
         textSeguroVida.innerHTML += '<p>¿Todos los datos son correctos?</p>'
+        return totalSeguroVida
     }
     else{
         alert("Complete todo los datos.")
@@ -140,7 +190,6 @@ function infoCompletada(){
         // La parte de guardado del usuario, quiero que sea una vez seleccionado el servicio y que se hayan "guardado los cambios".
         let usuarioIngresado = new Usuario(inputNombre.value, inputApellido.value, inputEdad.value, inputCorreo.value, inputPais.value)
         USUARIOS.push(usuarioIngresado)
-        console.log(USUARIOS)
         switch(inputTiposDeSeguros.value){
             case "SEGURO DE VIDA":
                 segurosVida.classList.remove("visually-hidden")
