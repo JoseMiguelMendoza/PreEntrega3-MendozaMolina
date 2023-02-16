@@ -75,17 +75,17 @@
         <div class="mb-3">
             <label for="exampleFormControlInput1" 
             id="exampleFormControlInput1" class="form-label">Nombre: </label>
-            <input type="text" id="inputNombre" class="form-control"  placeholder="Ingresar nombre">
+            <input type="text" id="inputNombre" class="inputs form-control"  placeholder="Ingresar nombre">
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput2" 
             id="exampleFormControlInput2" class="form-label">Apellido: </label>
-            <input type="text" id="inputApellido" class="clearInputOnceInfoSent form-control"  placeholder="Ingresar apellido">
+            <input type="text" id="inputApellido" class="inputs clearInputOnceInfoSent form-control"  placeholder="Ingresar apellido">
         </div>
 
         <div class="mb-3">
             <label for="exampleFormControlInput3" id="exampleFormControlInput3" class="form-label">Edad actual: </label>
-            <input type="text" id="inputEdad" class="form-control"  placeholder="Ingresar edad">
+            <input type="text" id="inputEdad" class="inputs form-control"  placeholder="Ingresar edad">
         </div>
 
         <div class="imgCentered">
@@ -94,12 +94,12 @@
 
         <div class="mb-3">
             <label for="exampleFormControlInput4" id="exampleFormControlInput4" class="form-label">Correo electrónico: </label>
-            <input type="email" id="inputCorreo" class="form-control"  placeholder="correo-electronico@gmail.com">
+            <input type="email" id="inputCorreo" class="inputs form-control"  placeholder="correo-electronico@gmail.com">
         </div>
 
         <div class="mb-4">
             <label for="exampleFormControlInput5" id="exampleFormControlInput5" class="form-label">País de origen:  </label>
-            <input type="text" id="inputPais" class="form-control"  placeholder="Ingresar país">
+            <input type="text" id="inputPais" class="inputs form-control"  placeholder="Ingresar país">
         </div>
 
 
@@ -175,21 +175,20 @@
             <p>1 - Calcular el valor de todas sus pertenencias ya antes mencionadas anteriormente. ¿De cuanto estamos hablando? Por favor, ingrese la suma total, sin tener en cuenta las joyas y objetos de valor especial.</p>
             <div class="mb-3">
                 <label for="exampleFormControlInput6" id="exampleFormControlInput6" class="form-label">Calculo total de pertenencias: </label>
-                <input type="text" id="inputPertenencias" class="form-control"  placeholder="Ingresar monto">
+                <input type="text" id="inputPertenencias" class="inputs form-control"  placeholder="Ingresar monto">
             </div>
             <p>2 - Luego, valore sus joyas y objetos de valor especial, es recomendable hacer esto ya que varias aseguradoras valoras estos objetos de forma diferente a precios distintos. Todo objeto de valor o joya debe superar los 2000 euros.
             Entonces, ¿Cuanto sería el total teniendo en cuenta las joyas, y objetos de valor especial?
             </p>
             <div class="mb-3">
                 <label for="exampleFormControlInput7" id="exampleFormControlInput7" class="form-label">Calculo total de joyas y objetos especiales: </label>
-                <input type="text" id="inputJoyas" class="form-control"  placeholder="Ingresar monto">
+                <input type="text" id="inputJoyas" class="inputs form-control"  placeholder="Ingresar monto">
             </div>
             <div class="form-floating mb-2">
                 <select class="form-select" id="opcionesHogar" aria-label="Floating label select example">
-                <option selected>Elegir el método que más le convenga</option>
-                <!-- Aqui los métodos estan en mi json, será que ahi debo usar fetch? -->
+                <option selected>---------------------</option>
                 </select>
-                <label for="opcionHogarEstablecida">Seleccione una tarifa:</label>
+                <label for="opcionesHogar">Seleccione una tarifa:</label>
             </div>
             
             <!-- Boton que activa el modal de seguro de hogar-->
@@ -223,11 +222,11 @@
         <div id="segurosVida" class="visually-hidden">
             <div class="mb-3">
                 <label for="exampleFormControlInput8" id="exampleFormControlInput8" class="form-label">Ingrese la capital a recibir: </label>
-                <input type="text" id="inputCapital" class="form-control"  placeholder="Ingresar cantidad">
+                <input type="text" id="inputCapital" class="inputs form-control"  placeholder="Ingresar cantidad">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput12" id="exampleFormControlInput12" class="mt-2 form-label">Ingrese año de nacimiento: </label>
-                <input type="text" id="inputAnio" class="form-control"  placeholder="Ingresar año">
+                <input type="text" id="inputAnio" class="inputs form-control"  placeholder="Ingresar año">
             </div>
             <div class="form-floating">
                 <select class="form-select" id="casos" aria-label="Floating label select example">
@@ -325,25 +324,25 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput9" id="exampleFormControlInput9" class="form-label">Ingrese el año en que nació: </label>
-                <input type="text" id="inputAnioNacimiento" class="form-control"  placeholder="Ingresar año de nacimiento">
+                <input type="text" id="inputAnioNacimiento" class="inputs form-control"  placeholder="Ingresar año de nacimiento">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput10" id="exampleFormControlInput10" class="form-label">Obra Social: </label>
-                <input type="text" id="inputObraSocial" class="form-control"  placeholder="Ingresar Obra Social">
+                <input type="text" id="inputObraSocial" class="inputs form-control"  placeholder="Ingresar Obra Social">
                 <small>(*) Si carece de Obra Social, simplemente puede dejarlo sin contenido.</small>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput11" id="exampleFormControlInput11" class="form-label">Area en el que reside actualmente: </label>
-                <input type="text" id="inputDireccion" class="form-control"  placeholder="Ingresar dirección y localidad">
+                <input type="text" id="inputDireccion" class="inputs form-control"  placeholder="Ingresar dirección y localidad">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput13" id="exampleFormControlInput13" class="form-label">DNI: </label>
-                <input type="text" id="inputDni" class="form-control"  placeholder="Ingresar DNI">
+                <input type="text" id="inputDni" class="inputs form-control"  placeholder="Ingresar DNI">
                 <small>(*) Ingrese su DNI sin puntos, ni guiones.</small>
             </div>
             <div class="form-floating mb-2">
                 <select class="form-select" id="opcionesMedico" aria-label="Floating label select example">
-                <option selected>Elegir el método que más le convenga</option>
+                <option selected>---------------------</option>
                 </select>
                 <label for="opcionesMedico">Seleccione una tarifa:</label>
             </div>

@@ -27,7 +27,7 @@ let inputCorreo = document.querySelector('#inputCorreo')
 let inputPais = document.querySelector('#inputPais')
 let btnAvanzar = document.querySelector('#btnAvanzar')
 let selectTiposDeSeguros = document.querySelector('#floatingSelect')
-
+let inputs = document.querySelectorAll('.inputs')
 
 // DOM - SEGURO DE VIDA
 let segurosVida = document.querySelector('#segurosVida')
@@ -214,6 +214,12 @@ function guardarCambiosHogar(){
     console.log(USUARIOS)
     const usuarioAGuardar = JSON.stringify(USUARIOS)
     localStorage.setItem("usuario/servicio",usuarioAGuardar)
+    opcionesHogar.value = '---------------------'
+    inputs.forEach((input) => input.value = '')
+    selectTiposDeSeguros.value = 'Elegir el tipo de seguro'
+    contenedorCasosSeleccionados.innerHTML = ''
+    casos.value = 'Elegir el caso correspondiente'
+    segurosHogar.classList.add("visually-hidden")
     Toastify({
         text: "Datos enviados satisfactoriamente.",       
         duration: 3000,
@@ -233,6 +239,11 @@ function guardarCambiosVida(){
     console.log(USUARIOS)
     const usuarioAGuardar = JSON.stringify(USUARIOS)
     localStorage.setItem("usuario/servicio",usuarioAGuardar)
+    inputs.forEach((input) => input.value = '')
+    segurosVida.classList.add("visually-hidden")
+    selectTiposDeSeguros.value = 'Elegir el tipo de seguro'
+    contenedorCasosSeleccionados.innerHTML = ''
+    casos.value = 'Elegir el caso correspondiente'
     Toastify({
         text: "Datos enviados satisfactoriamente.",       
         duration: 3000,
@@ -250,6 +261,12 @@ function guardarCambiosMedicos(){
     console.log(USUARIOS)
     const usuarioAGuardar = JSON.stringify(USUARIOS)
     localStorage.setItem("usuario/servicio",usuarioAGuardar)
+    inputs.forEach((input) => input.value = '')
+    opcionesMedico.value = '---------------------'
+    segurosMedicos.classList.add("visually-hidden")
+    selectTiposDeSeguros.value = 'Elegir el tipo de seguro'
+    contenedorCasosSeleccionados.innerHTML = ''
+    casos.value = 'Elegir el caso correspondiente'
     Toastify({
         text: "Datos enviados satisfactoriamente.",       
         duration: 3000,
@@ -257,13 +274,11 @@ function guardarCambiosMedicos(){
 }
 
 function medicoModal(){
+    btnContinueMedico.innerText = "¿Seguro?"
     if(inputAnioNacimiento.value != '' && inputDni.value != '' && inputDireccion.value != ''){
         if (inputObraSocial.value == ''){
             inputObraSocial.value == "No dispone"
         }
-
-        btnContinueMedico.setAttribute("data-bs-toggle","modal")
-        btnContinueMedico.setAttribute("data-bs-target","#exampleModalMedico")
 
         textSeguroMedico.innerHTML = 
         `<p>Los datos a confirmar son los siguientes: </p>
@@ -280,6 +295,11 @@ function medicoModal(){
         <p> La tarifa elegida fue: ${opcionesMedico.value}</p>
         `        
         textSeguroMedico.innerHTML += '<p>¿Todos los datos son correctos?</p>' 
+
+        btnContinueMedico.setAttribute("data-bs-toggle","modal")
+        btnContinueMedico.setAttribute("data-bs-target","#exampleModalMedico")
+
+
     }
     else{
         Swal.fire({
@@ -295,6 +315,7 @@ function medicoModal(){
 
 
 function hogarModal(){
+    btnContinueHogar.innerText = "¿Seguro?"
     if(inputPertenencias.value != '' && inputJoyas.value != ''){
         const IVA = 1.21
         let pertenencias = parseInt(inputPertenencias.value)
@@ -337,11 +358,12 @@ function vidaModal(){
     // CUANDO APRETO EL BOTON PARA CONTINUAR, NO SALE, SI LO APRETO UNA SEGUNDA VEZ, SALE.
     // Le quite data-bs-target a btnContinueVida, ya que con solo eso, el modal no se dispara al mismo tiempo que el sweet alert 2.
     //Tambien probé sacando data-bs-target y data-bs-toggle, pero dio el mismo resultado.
+    btnContinueVida.innerText = "¿Seguro?"
     if(inputCapital.value != '' && inputAnio.value != ''){
             let capital = parseInt(inputCapital.value)
             let edad = parseInt(inputEdad.value)
             let anio = parseInt(inputAnio.value)
-            let totalSeguroVida = parseInt(((capital * edad) + anio) / 10)
+            let totalSeguroVida = parseInt(((capital * edad) + anio) / 17)
             
             btnContinueVida.setAttribute("data-bs-toggle","modal")
             btnContinueVida.setAttribute("data-bs-target","#exampleModalVida")
@@ -419,7 +441,7 @@ function infoCompletada(){
                     confirmButtonText: 'De acuerdo'
                 })
         }
-        
+
     }
     else{
         Swal.fire({
