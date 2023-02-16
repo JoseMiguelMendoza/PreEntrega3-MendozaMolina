@@ -5,8 +5,18 @@
     list-style-type: none;
 }
 
+.iconCasosVida{
+    height: 57px;
+    width: 53px;
+}
+
 .listStyle{
     list-style-type: disc;
+}
+
+.iconSize{
+    height: 20px;
+    width: 20px;
 }
 
 .botonColor{
@@ -18,7 +28,7 @@
 }
 
 .navColor{
-    background-color:rgb(220, 239, 255)!important;
+    background-color:#dcefff!important;
     border-bottom: 1px solid black;
 }
 

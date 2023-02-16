@@ -1,0 +1,48 @@
+[
+    {
+        "seguro":"SEGURO MÉDICO",
+        "clasificaciones": [{
+            "tipo":"Basico", 
+            "precio":9000
+        },{
+            "tipo":"Avanzado", 
+            "precio": 17000
+        },{
+            "tipo":"Premium",
+            "precio":30000
+        }]
+    },
+    {
+        "seguro": "SEGURO DE HOGAR",
+        "clasificaciones":[{
+            "tipo":"Basico",
+            "precio": 24000
+        },{
+            "tipo":"Avanzado",
+            "precio": 42000
+        },{
+            "tipo":"Premium",
+            "precio": 60000
+        }]
+    },
+    {
+        "seguro":"SEGURO DE VIDA",
+        "situaciones":
+        [{
+            "situacion":"ACCIDENTE AUTOMOVILISTICO",
+            "imagenCaso":"images/car-crash-51.png"
+        },
+        {   "situacion":"ENFERMEDAD",
+            "imagenCaso":"images/sneeze-50.png"
+        },
+        {   "situacion":"CONTACTO ESTRECHO A SUSTANCIA DANINA",
+            "imagenCaso":"images/radioactive-50.png"
+        },
+        {   "situacion":"ROBO A MANO ARMADA",
+            "imagenCaso":"images/crime-50.png"
+        },
+        {   "situacion":"FALLECIMIENTO O MUERTE NATURAL",
+            "imagenCaso":"images/grave-50.png"    
+        }]
+    }
+]
