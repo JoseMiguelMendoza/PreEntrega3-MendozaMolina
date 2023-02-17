@@ -99,7 +99,7 @@ function selectorCasosVida(){
         let json = JSON.parse(localStorage.getItem("data"))
         contenedorCasosSeleccionados.innerHTML = ''
         switch(casos.value){
-            case json[2].situaciones[0].situacion: // accidente automovilistico
+            case json[2].situaciones[0].situacion: 
                 contenedorCasosSeleccionados.innerHTML += `
                     <div class="card mb-3" style="max-width: 100%;">
                         <div class="row g-0">
@@ -117,8 +117,10 @@ function selectorCasosVida(){
                         </div>
                     </div>
                 `
+                casos.setAttribute("aria-label","Disabled")
+                casos.setAttribute("disabled",null)
                 break
-            case json[2].situaciones[1].situacion: // enfermedad
+            case json[2].situaciones[1].situacion: 
                 contenedorCasosSeleccionados.innerHTML += `
                     <div class="card mb-3" style="max-width: 100%;">
                         <div class="row g-0">
@@ -136,8 +138,10 @@ function selectorCasosVida(){
                         </div>
                     </div>
                 `
+                casos.setAttribute("aria-label","Disabled")
+                casos.setAttribute("disabled",null)
                 break
-            case json[2].situaciones[2].situacion: // contacto con sustancias toxicas
+            case json[2].situaciones[2].situacion: 
                 contenedorCasosSeleccionados.innerHTML += `
                     <div class="card mb-3" style="max-width: 100%;">
                         <div class="row g-0">
@@ -155,8 +159,10 @@ function selectorCasosVida(){
                         </div>
                     </div>
                 `
+                casos.setAttribute("aria-label","Disabled")
+                casos.setAttribute("disabled",null)
                 break
-            case json[2].situaciones[3].situacion: // robo a mano armada
+            case json[2].situaciones[3].situacion: 
                 contenedorCasosSeleccionados.innerHTML += `
                     <div class="card mb-3" style="max-width: 100%;">
                         <div class="row g-0">
@@ -174,8 +180,10 @@ function selectorCasosVida(){
                         </div>
                     </div>
                 `
+                casos.setAttribute("aria-label","Disabled")
+                casos.setAttribute("disabled",null)
                 break
-            case json[2].situaciones[4].situacion: // fallecimiento
+            case json[2].situaciones[4].situacion: 
                 contenedorCasosSeleccionados.innerHTML += `
                     <div class="card mb-3" style="max-width: 100%;">
                         <div class="row g-0">
@@ -193,23 +201,42 @@ function selectorCasosVida(){
                         </div>
                     </div>
                 `
+                casos.setAttribute("aria-label","Disabled")
+                casos.setAttribute("disabled",null)
                 break
         }
         let erase = document.querySelector("#erase")
         erase.addEventListener("click", () => {
             casos.value = 'Elegir el caso correspondiente'
+            casos.removeAttribute("disabled")
             contenedorCasosSeleccionados.innerHTML = ''
         })
     }
 
 
 function guardarCambiosHogar(){
+    let json = JSON.parse(localStorage.getItem("data"))
     const IVA = 1.21
     let pertenencias = parseInt(inputPertenencias.value)
     let joyas = parseInt(inputJoyas.value)
-    let totalSeguroHogar = parseInt(((pertenencias + joyas) * IVA) / 0.9)
+    if (opcionesHogar.value == "Basico"){
+        valorTarifa = json[1].clasificaciones[0].precio
+    }
+    else{
+        if(opcionesHogar.value == "Avanzado"){
+            console.log()
+            valorTarifa = json[1].clasificaciones[1].precio
+        }
+        else{
+            if(opcionesHogar.value == "Premium"){
+                valorTarifa = json[1].clasificaciones[2].precio
+            }
+        }
+    }
+    let totalSeguroHogar = parseInt((((pertenencias + joyas) * IVA) / 0.9) + valorTarifa)
     let servicioElegido = "Seguro de Hogar"
-    let servicio = {servicio: servicioElegido, cantidad_joyas: joyas, cantidad_pertenencias: pertenencias, total: totalSeguroHogar}
+    let tarifaElegida = opcionesHogar.value 
+    let servicio = {servicio: servicioElegido, tarifa: tarifaElegida, cantidad_joyas: joyas, cantidad_pertenencias: pertenencias, total: totalSeguroHogar}
     USUARIOS.push(servicio)
     console.log(USUARIOS)
     const usuarioAGuardar = JSON.stringify(USUARIOS)
@@ -233,7 +260,7 @@ function guardarCambiosVida(){
     let capital = parseInt(inputCapital.value)
     let edad = parseInt(inputEdad.value)
     let anio = parseInt(inputAnio.value)
-    let totalSeguroVida = parseInt(((capital * edad) + anio) / 10) 
+    let totalSeguroVida = parseInt(((capital * edad) + anio) / 17) 
     let servicio = {servicio: servicioElegido, capital: cantidadCapital, año: datoAnio, total: totalSeguroVida}
     USUARIOS.push(servicio)
     console.log(USUARIOS)
@@ -251,12 +278,28 @@ function guardarCambiosVida(){
 }
 
 function guardarCambiosMedicos(){
+    let json = JSON.parse(localStorage.getItem("data"))
     let obraSocial = inputObraSocial.value
     let dni = inputDni.value
     let direccion = inputDireccion.value
     let tarifaElegida = opcionesMedico.value
     let servicioElegido = "Seguro Médico"
-    let servicio = {servicio: servicioElegido, tarifa: tarifaElegida, obraSocial: obraSocial, DNI: dni, Direccion: direccion}
+    let valorTarifa
+    if (opcionesMedico.value == "Basico"){
+        valorTarifa = json[0].clasificaciones[0].precio
+    }
+    else{
+        if(opcionesMedico.value == "Avanzado"){
+            console.log()
+            valorTarifa = json[0].clasificaciones[1].precio
+        }
+        else{
+            if(opcionesMedico.value == "Premium"){
+                valorTarifa = json[0].clasificaciones[2].precio
+            }
+        }
+    }
+    let servicio = {servicio: servicioElegido, tarifa: tarifaElegida, precioTarifa: valorTarifa, obraSocial: obraSocial, DNI: dni, Direccion: direccion}
     USUARIOS.push(servicio)
     console.log(USUARIOS)
     const usuarioAGuardar = JSON.stringify(USUARIOS)
@@ -274,12 +317,28 @@ function guardarCambiosMedicos(){
 }
 
 function medicoModal(){
+    let json = JSON.parse(localStorage.getItem("data"))
     btnContinueMedico.innerText = "¿Seguro?"
+    let valorTarifa
     if(inputAnioNacimiento.value != '' && inputDni.value != '' && inputDireccion.value != ''){
         if (inputObraSocial.value == ''){
             inputObraSocial.value == "No dispone"
         }
 
+        if (opcionesMedico.value == "Basico"){
+            valorTarifa = json[0].clasificaciones[0].precio
+        }
+        else{
+            if(opcionesMedico.value == "Avanzado"){
+                console.log()
+                valorTarifa = json[0].clasificaciones[1].precio
+            }
+            else{
+                if(opcionesMedico.value == "Premium"){
+                    valorTarifa = json[0].clasificaciones[2].precio
+                }
+            }
+        }
         textSeguroMedico.innerHTML = 
         `<p>Los datos a confirmar son los siguientes: </p>
         <ul>
@@ -292,7 +351,7 @@ function medicoModal(){
             <li class="listStyle">DNI: ${inputDni.value}</li>
         </ul>
         <p> Su obra social es de: ${inputObraSocial.value}</p>
-        <p> La tarifa elegida fue: ${opcionesMedico.value}</p>
+        <p> La tarifa elegida fue ${opcionesMedico.value} con un precio de $${valorTarifa}</p>
         `        
         textSeguroMedico.innerHTML += '<p>¿Todos los datos son correctos?</p>' 
 
@@ -315,12 +374,28 @@ function medicoModal(){
 
 
 function hogarModal(){
+    let json = JSON.parse(localStorage.getItem("data"))
     btnContinueHogar.innerText = "¿Seguro?"
     if(inputPertenencias.value != '' && inputJoyas.value != ''){
         const IVA = 1.21
+        let valorTarifa
         let pertenencias = parseInt(inputPertenencias.value)
         let joyas = parseInt(inputJoyas.value)
-        let totalSeguroHogar = parseInt(((pertenencias + joyas) * IVA) / 0.9)
+        if (opcionesHogar.value == "Basico"){
+            valorTarifa = json[1].clasificaciones[0].precio
+        }
+        else{
+            if(opcionesHogar.value == "Avanzado"){
+                console.log()
+                valorTarifa = json[1].clasificaciones[1].precio
+            }
+            else{
+                if(opcionesHogar.value == "Premium"){
+                    valorTarifa = json[1].clasificaciones[2].precio
+                }
+            }
+        }
+        let totalSeguroHogar = parseInt((((pertenencias + joyas) * IVA) / 0.9) + valorTarifa)
 
         btnContinueHogar.setAttribute("data-bs-toggle","modal")
         btnContinueHogar.setAttribute("data-bs-target","#exampleModalHogar")
@@ -355,9 +430,6 @@ function hogarModal(){
 
 
 function vidaModal(){
-    // CUANDO APRETO EL BOTON PARA CONTINUAR, NO SALE, SI LO APRETO UNA SEGUNDA VEZ, SALE.
-    // Le quite data-bs-target a btnContinueVida, ya que con solo eso, el modal no se dispara al mismo tiempo que el sweet alert 2.
-    //Tambien probé sacando data-bs-target y data-bs-toggle, pero dio el mismo resultado.
     btnContinueVida.innerText = "¿Seguro?"
     if(inputCapital.value != '' && inputAnio.value != ''){
             let capital = parseInt(inputCapital.value)
